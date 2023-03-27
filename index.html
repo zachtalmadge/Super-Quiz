@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha512-iQQV+nXtBlmS3XiDrtmL+9/Z+ibux+YuowJjI4rcpO7NYgTzfTOiFNm09kWtfZzEB9fQ6TwOVc8lFVWooFuD/w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> <!-- Font Awesome -->
+        integrity="sha384-+2e4h68pmq1jygCMJInB7m4qQ8/KId/WkeL2Qcg3YjJqYqjtUV1hk6CZm3SM+I2V" crossorigin="anonymous">
+    <!-- font awesome-->
+    <link rel="stylesheet" href="css/main.css">
+    <title>Super Quiz</title>
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid text-center bg-dark">
+        <div class="container">
+            <div id="home">
+                <h1 class="display-4 text-light">Welcome to the Super Quiz!</h1>
+                <p class="text-muted text-light">Test your knowledge of music trivia!</p>
+                <p class="lead text-light">When you are ready to play click on the 'Play Now' button. A random music
+                    trivia question will appear. When you select an answer a message will appear advising you if you are
+                    correct. Then click on the 'Next' button to move onto the next question.</p>
+                <p class="lead text-light">You can also add your own Q & A's which will be included in 1 round of the quiz</p>
+                <p class="lead text-light">Enjoy!</p>
+                <button id="play-now" class="btn ml-5 btn-lg btn-success">Play Now</button>
+                <button id="add-question" class="btn btn-lg ml-1 btn-outline-info">Add Question +</button>
+            </div><!-- end home-->
+            <div id="quiz" class="hidden">
+                <h1 id="question" class="display-4 text-light mb-5"><!-- question goes here--></h1>
+                <div id="possible-answers">
+                    <button id="answer0" class="btn btn-lg my-4 btn-block btn-success" data-index="0"><!-- answer 1 goes here--></button>
+                    <button id="answer1" class="btn btn-lg my-4 btn-block btn-warning text-white" data-index="1"><!-- answer 2 goes here--></button>
+                    <button id="answer2" class="btn btn-lg my-4 btn-block btn-danger" data-index="2"><!-- answer 3 goes here--></button>
+                    <button id="answer3" class="btn btn-lg my-4 btn-block btn-primary" data-index="3"><!-- answer 4 goes here--></button>
+                </div><!-- end possible answers-->
+            </div> <!-- end quiz -->
+            <div id="form" class="hidden">
+                <h1 class="display-4 text-light">Add Your Question Below</h1>
+                <p class="text-muted text-light">All fields are required</p>
+                <form class="form">
+                    <fieldset class="form-group">
+                        <div class="form-group row">
+                            <div class="col">
+                                <input class="form-control" type="text" id="user-question" placeholder="Question">
+                            </div><!-- end col-->
+                        </div><!-- form-group -->
+                        <div class="form-group row">
+                            <div class="col">
+                                <input class="form-control" type="text" id="user-answer0" placeholder="Answer 1">
+                            </div> <!-- end col-->
+                        </div><!-- form-group -->
+                        <div class="form-group row">
+                            <div class="col">
+                                <input class="form-control" type="text" id="user-answer1" placeholder="Answer 2">
+                            </div> <!-- end col-->
+                        </div><!-- form-group -->
+                        <div class="form-group row">
+                            <div class="col">
+                                <input class="form-control" type="text" id="user-answer2" placeholder="Answer 3">
+                            </div> <!-- end col -->
+                        </div><!-- form-group -->
+                        <div class="form-group row">
+                            <div class="col">
+                                <input class="form-control" type="text" id="user-answer3" placeholder="Answer 4">
+                            </div> <!-- end col -->
+                        </div><!-- form-group -->
+                        <div class="form-group row">
+                            <div class="col">
+                                <input class="form-control" type="text" id="user-correct-answer" placeholder="Correct Answer Number (Must be between 1 and 4)">
+                            </div> <!-- end col-->
+                        </div><!-- form-group -->
+                        <button type="submit" class="btn d-block px-5 py-2 mx-auto  btn-primary my-3 btn-lg">Submit</button>
+                </form>
+                <button id="back-to-home-0" class="btn btn-lg btn-outline-info">Back to Home Page <i class="fa fa-home"></i></button>
+            </div><!-- end form-->
+            <div id="question-submission" class="hidden">
+                <i id="correct-symbol" class="fa fa-check-circle fa-4x"></i>
+                <h1 class="display-4 text-light">Question Submitted!</h1>
+                <button id="add-another" class="btn btn-lg btn-warning text-white">Add Another Question +</button>
+                <button id="return-home" class="btn btn-lg btn-info">Return to Home Page <i class="fa fa-home"></i></button>
+            </div><!-- end question-submission-->
+            <div id="result" class="hidden">
+                <div id="correct-element" class="hidden">
+                    <i id="correct-symbol" class="fa fa-check-circle fa-4x"></i>
+                    <h1 id="correct-text" class="display-4 text-light mb-5 ">Correct!</h1>
+                </div> <!-- end correct element-->
+                <div id="incorrect-element" class="hidden">
+                    <i id="incorrect-symbol" class="fa fa-times-circle fa-4x"></i>
+                    <h1 id="incorrect-text" class="display-4 text-light mb-5">Wrong!</h1>
+                </div> <!-- end incorrect element-->
+                <button id="next-question" class="btn btn-primary btn-lg">Next Question</button>
+            </div><!-- end result-->
+            <div id="score" class="hidden">
+                <h1 class="display-4 text-light">Congratulations!</h1>
+                <p class="lead text-light">You got <span id="number-correct">blank</span> out of <span id="question-bank-length">blank</span> correct!</p>
+                <button id="play-again" class="btn ml-4 btn-lg btn-success ml-5">Play again</i></button>
+                <button id="back-to-home" class="btn btn-lg btn-info">Go to Home Page <i class="fa fa-home"></i></button>
+            </div><!-- end score-->
+        </div><!-- end container-->
+    </div> <!-- end jumbotron-->
+    <footer class="row text-center">
+        <div class="col">
+            <h3>Created by <span class="text-success">Zach Talmadge</span></h3>
+            <h4 class="mt-2">Brought to you by:</h4>
+            <img class="w-25" src="Images/tlmLogo.png">
+        </div> <!-- end col-->
+    </footer><!-- end row-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <!-- jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha512-n6dYFOG599s4/mGlA6E+YLgtg9uPTOMDUb0IprSMDYVLr0ctiRryPEQ8gpM4DCMlx7M2G3CK+ZcaoOoJolzdCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <!-- bootstrap-->
+    <script src="js/js.js"></script>
+</body>
+</html>

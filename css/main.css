@@ -1,0 +1,15 @@
+.hidden {
+    display: none;
+}
+
+.fa-check-circle {
+    color: green;
+    background-color: white;
+    border-radius: 50%
+}
+
+.fa-times-circle {
+    color: red;
+    background-color: white;
+    border-radius: 50%
+}
